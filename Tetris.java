@@ -1,3 +1,4 @@
+// Question No 3 b
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -114,6 +115,7 @@ public class Tetris extends JPanel implements ActionListener, KeyListener, Mouse
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        // Draw the game board
         for (int i = 0; i < BOARD_HEIGHT; i++) {
             for (int j = 0; j < BOARD_WIDTH; j++) {
                 if (board[i][j]) {
@@ -123,11 +125,12 @@ public class Tetris extends JPanel implements ActionListener, KeyListener, Mouse
             }
         }
 
+        // Draw the current shape
         if (currentShape != null) {
             for (int i = 0; i < currentShape.getHeight(); i++) {
                 for (int j = 0; j < currentShape.getWidth(); j++) {
                     if (currentShape.isFilled(i, j)) {
-                        g.setColor(Color.CYAN);
+                        g.setColor(currentShape.getColor());
                         g.fillRect((currentX + j) * TILE_SIZE, (currentY + i) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
                     }
                 }
@@ -141,17 +144,19 @@ public class Tetris extends JPanel implements ActionListener, KeyListener, Mouse
         g.drawRect(previewX - 10, previewY - 10, 4 * TILE_SIZE, 4 * TILE_SIZE);
         g.drawString("Next:", previewX, previewY - 20);
 
+        // Draw the next shape inside the preview box
         if (nextShape != null) {
             for (int i = 0; i < nextShape.getHeight(); i++) {
                 for (int j = 0; j < nextShape.getWidth(); j++) {
                     if (nextShape.isFilled(i, j)) {
-                        g.setColor(Color.GREEN);
+                        g.setColor(nextShape.getColor());  // Use the next shape's color
                         g.fillRect(previewX + j * TILE_SIZE, previewY + i * TILE_SIZE, TILE_SIZE, TILE_SIZE);
                     }
                 }
             }
         }
 
+        // Display "Game Over" message if game ends
         if (gameOver) {
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 20));
@@ -253,7 +258,7 @@ class Shape {
     public int getWidth() { return shape[0].length; }
     public int getHeight() { return shape.length; }
     public boolean isFilled(int row, int col) { return shape[row][col] == 1; }
-    public Color getColor() { return color; } // Getter for color
+    public Color getColor() { return color; }
 
     public void rotate() {
         int[][] rotated = new int[shape[0].length][shape.length];
