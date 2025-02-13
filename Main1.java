@@ -1,3 +1,5 @@
+// Question No 6 a.
+
 import java.util.concurrent.Semaphore;
 
 class NumberPrinter {
