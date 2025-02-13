@@ -80,7 +80,7 @@ public class MultiThreadedWebCrawler {
     public static void main(String[] args) {
         MultiThreadedWebCrawler crawler = new MultiThreadedWebCrawler(10); // 10 threads
         // Add initial URLs to crawl
-        crawler.addUrls(List.of("https://example.com", "https://example.org"));
+        crawler.addUrls(List.of("https://google.com", "https://bing.org"));
         // Start crawling
         crawler.startCrawling();
         // Wait for termination
