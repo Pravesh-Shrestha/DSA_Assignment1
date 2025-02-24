@@ -39,6 +39,7 @@ public class MultiThreadedWebCrawler {
         private String fetchWebPage(String url) {
             StringBuilder content = new StringBuilder();
             try {
+                @SuppressWarnings("deprecation")
                 URL urlObj = new URL(url);
                 HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
                 connection.setRequestMethod("GET");
@@ -80,7 +81,7 @@ public class MultiThreadedWebCrawler {
     public static void main(String[] args) {
         MultiThreadedWebCrawler crawler = new MultiThreadedWebCrawler(10); // 10 threads
         // Add initial URLs to crawl
-        crawler.addUrls(List.of("https://google.com", "https://bing.org"));
+        crawler.addUrls(List.of("https://google.com", "https://youtube.com"));
         // Start crawling
         crawler.startCrawling();
         // Wait for termination
